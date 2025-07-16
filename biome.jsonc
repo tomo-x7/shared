@@ -1,28 +1,56 @@
+// biome-ignore-all assist/source/useSortedKeys: <>
 {
 	"$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
-	"vcs": { "clientKind": "git", "enabled": true, "useIgnoreFile": true },
+	"root": false,
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on",
+				"useSortedAttributes": "on",
+				"useSortedKeys": "on",
+				"useSortedProperties": "on"
+			}
+		},
+		"enabled": true
+	},
 	"formatter": {
 		"enabled": true,
+		"formatWithErrors": true,
 		"indentStyle": "tab",
 		"indentWidth": 4,
-		"lineWidth": 120,
-		"formatWithErrors": true
+		"lineWidth": 120
 	},
 	"linter": {
+		"enabled": true,
 		"rules": {
-			"a11y": { "useKeyWithClickEvents": "off" },
-			"style": {
-				"noUselessElse": "off",
-				"useImportType": "info",
-				"noNonNullAssertion": "off",
-				"useNodejsImportProtocol": "off"
+			"a11y": {
+				"noRedundantAlt": "off",
+				"noSvgWithoutTitle": "off",
+				"useAltText": "off",
+				"useKeyWithClickEvents": "off"
 			},
 			"correctness": {
-				"noUnusedImports": { "level": "info", "fix": "safe", "options": {} },
-				"useJsxKeyInIterable": "off",
 				"noUnusedFunctionParameters": "off",
+				"noUnusedImports": { "fix": "safe", "level": "info", "options": {} },
 				"noUnusedVariables": "off"
-			}
+			},
+			"recommended": true,
+			"style": {
+				"noNonNullAssertion": "off",
+				"noUselessElse": "off",
+				"useExportType": "info",
+				"useImportType": "info",
+				"useNodejsImportProtocol": "off"
+			},
+			"suspicious": { "noArrayIndexKey": "off", "noExplicitAny": "off" }
 		}
-	}
+	},
+	"overrides": [
+		{ "includes": ["tsconfig.*"], "json": { "parser": { "allowComments": true, "allowTrailingCommas": true } } },
+		{
+			"includes": ["package.json", "biome.json", "**/biome.jsonc"],
+			"assist": { "actions": { "source": { "useSortedKeys": "off" } } }
+		}
+	],
+	"vcs": { "clientKind": "git", "enabled": true, "useIgnoreFile": true }
 }
