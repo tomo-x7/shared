@@ -1,6 +1,6 @@
 // biome-ignore-all assist/source/useSortedKeys: <>
 {
-	"$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.2.3/schema.json",
 	"root": false,
 	"assist": {
 		"actions": {
