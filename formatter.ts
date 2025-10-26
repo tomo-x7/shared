@@ -15,11 +15,13 @@ export function formatForLog(value: unknown) {
 		if (v instanceof Error) {
 			const name = v.name || "Error";
 			const msg = v.message || "";
-			const stack = v.stack ? `\n${v.stack}` : "";
-			// include enumerable/non-enumerable extra props
+			const stack = v.stack || "";
+			// stack の先頭行は "Error: message" なので重複を避けて2行目以降を使う
+			const stackLines = stack.split(/\r?\n/);
+			const stackRest = stackLines.length > 1 ? `\n${stackLines.slice(1).join("\n")}` : stack ? `\n${stack}` : "";
 			const extras = Object.getOwnPropertyNames(v).filter((k) => !["name", "message", "stack"].includes(k));
 			const extraText = extras.length ? `\n${fmtObjectProps(v, extras, depth)}` : "";
-			return `${name}: ${msg}${stack}${extraText}`;
+			return `${name}: ${msg}${stackRest}${extraText}`;
 		}
 
 		if (v instanceof Date) return `Date { ${Number.isNaN(v.getDate()) ? "Invalid Date" : v.toISOString()} }`;
