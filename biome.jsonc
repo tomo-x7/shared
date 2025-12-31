@@ -23,6 +23,7 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
+			"recommended": true,
 			"a11y": {
 				"noRedundantAlt": "off",
 				"noSvgWithoutTitle": "off",
@@ -34,7 +35,6 @@
 				"noUnusedImports": { "fix": "safe", "level": "info", "options": {} },
 				"noUnusedVariables": "off"
 			},
-			"recommended": true,
 			"style": {
 				"noNonNullAssertion": "off",
 				"noUselessElse": "off",
@@ -46,11 +46,8 @@
 		}
 	},
 	"overrides": [
-		{ "includes": ["tsconfig.*"], "json": { "parser": { "allowComments": true, "allowTrailingCommas": true } } },
-		{
-			"includes": ["package.json", "biome.json", "**/biome.jsonc"],
-			"assist": { "actions": { "source": { "useSortedKeys": "off" } } }
-		}
+		{ "includes": ["**/tsconfig.*"], "json": { "parser": { "allowComments": true, "allowTrailingCommas": true } } },
+		{ "includes": ["**/*.tailwind.css"], "linter": { "rules": { "suspicious": { "noUnknownAtRules": "off" } } } }
 	],
 	"vcs": { "clientKind": "git", "enabled": true, "useIgnoreFile": true }
 }
